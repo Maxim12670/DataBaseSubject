@@ -22,3 +22,27 @@ C:\Users\Maxim\OneDrive\Рабочий стол\прикинь это ПАПКА
 C:\Users\Maxim\OneDrive\Рабочий стол\прикинь это ПАПКА\УЧЕБА\Основы разработки БД\ОРБД.Лаб2\dataBaseForSchool\obj\Debug\dataBaseForSchool.GridFormRatingList.resources
 C:\Users\Maxim\OneDrive\Рабочий стол\прикинь это ПАПКА\УЧЕБА\Основы разработки БД\ОРБД.Лаб2\dataBaseForSchool\obj\Debug\dataBaseForSchool.GridFormStudentList.resources
 C:\Users\Maxim\OneDrive\Рабочий стол\прикинь это ПАПКА\УЧЕБА\Основы разработки БД\ОРБД.Лаб2\dataBaseForSchool\obj\Debug\dataBaseForSchool.FormSQL.resources
+C:\Users\Maxim\clon1\dataBaseForSchool\bin\Debug\dataBaseForSchool.exe.config
+C:\Users\Maxim\clon1\dataBaseForSchool\bin\Debug\dataBaseForSchool.exe
+C:\Users\Maxim\clon1\dataBaseForSchool\bin\Debug\dataBaseForSchool.pdb
+C:\Users\Maxim\clon1\dataBaseForSchool\obj\Debug\dataBaseForSchool.csproj.AssemblyReference.cache
+C:\Users\Maxim\clon1\dataBaseForSchool\obj\Debug\dataBaseForSchool.csproj.SuggestedBindingRedirects.cache
+C:\Users\Maxim\clon1\dataBaseForSchool\obj\Debug\dataBaseForSchool.FormAssignedTeacherList.resources
+C:\Users\Maxim\clon1\dataBaseForSchool\obj\Debug\dataBaseForSchool.FormDisciplineList.resources
+C:\Users\Maxim\clon1\dataBaseForSchool\obj\Debug\dataBaseForSchool.FormInformationParentList.resources
+C:\Users\Maxim\clon1\dataBaseForSchool\obj\Debug\dataBaseForSchool.MainForm.resources
+C:\Users\Maxim\clon1\dataBaseForSchool\obj\Debug\dataBaseForSchool.FormRatingList.resources
+C:\Users\Maxim\clon1\dataBaseForSchool\obj\Debug\dataBaseForSchool.FormSQL.resources
+C:\Users\Maxim\clon1\dataBaseForSchool\obj\Debug\dataBaseForSchool.FormStudentList.resources
+C:\Users\Maxim\clon1\dataBaseForSchool\obj\Debug\dataBaseForSchool.FormTeacherList.resources
+C:\Users\Maxim\clon1\dataBaseForSchool\obj\Debug\dataBaseForSchool.GridFormAssignedTeacherList.resources
+C:\Users\Maxim\clon1\dataBaseForSchool\obj\Debug\dataBaseForSchool.GridFormDisciplineList.resources
+C:\Users\Maxim\clon1\dataBaseForSchool\obj\Debug\dataBaseForSchool.GridFormInformationParentList.resources
+C:\Users\Maxim\clon1\dataBaseForSchool\obj\Debug\dataBaseForSchool.GridFormRatingList.resources
+C:\Users\Maxim\clon1\dataBaseForSchool\obj\Debug\dataBaseForSchool.GridFormStudentList.resources
+C:\Users\Maxim\clon1\dataBaseForSchool\obj\Debug\dataBaseForSchool.GridFormTeacherList.resources
+C:\Users\Maxim\clon1\dataBaseForSchool\obj\Debug\dataBaseForSchool.Properties.Resources.resources
+C:\Users\Maxim\clon1\dataBaseForSchool\obj\Debug\dataBaseForSchool.csproj.GenerateResource.cache
+C:\Users\Maxim\clon1\dataBaseForSchool\obj\Debug\dataBaseForSchool.csproj.CoreCompileInputs.cache
+C:\Users\Maxim\clon1\dataBaseForSchool\obj\Debug\dataBaseForSchool.exe
+C:\Users\Maxim\clon1\dataBaseForSchool\obj\Debug\dataBaseForSchool.pdb
