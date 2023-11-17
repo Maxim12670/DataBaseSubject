@@ -220,7 +220,7 @@ namespace dataBaseForSchool
                 catch
                 {
                     MessageBox.Show("Выбран не тот формат файла", "Ошибка",
-                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
@@ -229,47 +229,31 @@ namespace dataBaseForSchool
 
         void InsertStudent()
         {
-            if(String.IsNullOrEmpty(textBoxId_student.Text) ||
+            if(
                     (String.IsNullOrEmpty(textBoxName_student.Text)) ||
                     (String.IsNullOrEmpty(textBoxEducation_student.Text)) ||
                     (String.IsNullOrEmpty(textBoxRegistration_student.Text)))
             {
-
-                MessageBox.Show("Обязательно введите код ученика, ФИО, образование и прописку ученика", "Внимание", 
+                MessageBox.Show("Обязательно введите ФИО, образование и прописку ученика", "Внимание", 
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                  return;
             }
-
-            int _id;
-
-            if (!int.TryParse(textBoxId_student.Text, out _id))
-            {
-                MessageBox.Show("Некоректное значение кода ученика!", "Внимание",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             int _ed;
-
             if (!int.TryParse(textBoxEducation_student.Text, out _ed))
             {
                 MessageBox.Show("Некоректное значение образования ученика!", "Внимание",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            string sqlInsert = @"insert into Student (id_student, fullName, education, registration, photo)
-                                    values (@id, @fullName, @educat, @registr, @photo)";
-
+            string sqlInsert = @"insert into Student (fullName, education, registration, photo) 
+                                    values (@fullName, @educat, @registr, @photo)";
             SqlConnection connection = new SqlConnection(Properties.Settings.Default.schoollConnectionString);
             connection.Open();
             SqlCommand command = connection.CreateCommand();
             command.CommandText = sqlInsert;
-            command.Parameters.AddWithValue("@id", _id);
             command.Parameters.AddWithValue("@fullName", textBoxName_student.Text);
-            command.Parameters.AddWithValue("@educat", textBoxEducation_student.Text);
+            command.Parameters.AddWithValue("@educat", SqlDbType.Int).Value = textBoxEducation_student.Text;
             command.Parameters.AddWithValue("@registr", textBoxRegistration_student.Text);
-
 
             if (!String.IsNullOrEmpty(fileImage))
             {
@@ -280,7 +264,6 @@ namespace dataBaseForSchool
                 command.Parameters.Add("@Photo", SqlDbType.VarBinary);
                 command.Parameters["@Photo"].Value = DBNull.Value;
             }
-
             try
             {
                 command.ExecuteNonQuery();
@@ -291,7 +274,6 @@ namespace dataBaseForSchool
                "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
             connection.Close();
             buttonSelectStudent_Click(this, EventArgs.Empty);
         }
@@ -313,59 +295,42 @@ namespace dataBaseForSchool
                MessageBoxIcon.Warning);
                 return;
             }
-
             int id;
-
             if (!int.TryParse(textBoxId_student.Text, out id))
             {
                 MessageBox.Show("Некоректное значение кода ученика!", "Внимание",
                MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            int _ed;
-
-            if (!int.TryParse(textBoxEducation_student.Text, out _ed))
-            {
-                MessageBox.Show("Некоректное значение образования ученика!", "Внимание",
-               MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-
-            string sqlUpdate = "update Student set id_student=@id_student, fullName=@fullName, education=@educat, registration=@registr, photo=@photo where id_student = @id_student";
+            string sqlUpdate = "UPDATE Student SET {0} WHERE id_student = @id";
             SqlConnection connection = new SqlConnection(Properties.Settings.Default.schoollConnectionString);
             connection.Open();
             SqlCommand command = connection.CreateCommand();
-
             string sqlValues = "";
-
-            //if (!String.IsNullOrEmpty(textBoxName_student.Text))
-            //    sqlValues += "fullName=@fullName,";
-            //if (!String.IsNullOrEmpty(textBoxEducation_student.Text))
-            //    sqlValues += "education=@educat,";
-            //if (!String.IsNullOrEmpty(textBoxRegistration_student.Text))
-            //    sqlValues += "registration=@registr,";
-            //if (!String.IsNullOrEmpty(fileImage))
-            //    sqlValues += "photo=@photo,";
-
             if (!String.IsNullOrEmpty(textBoxName_student.Text))
-                command.Parameters.Add("@fullName", SqlDbType.NText).Value =
-               textBoxName_student.Text;
+                sqlValues += "fullName=@fullName,";
             if (!String.IsNullOrEmpty(textBoxEducation_student.Text))
-                command.Parameters.Add("@educat", SqlDbType.NVarChar).Value =
-               textBoxEducation_student;
+                sqlValues += "education=@educat,";
             if (!String.IsNullOrEmpty(textBoxRegistration_student.Text))
-                command.Parameters.Add("@registr", SqlDbType.NVarChar).Value =
-               textBoxRegistration_student;
+                sqlValues += "registration=@registr,";
+
+            if (!String.IsNullOrEmpty(fileImage))
+                sqlValues += "photo=@photo,";
+            sqlValues = sqlValues.Substring(0, sqlValues.Length - 1);
+            command.CommandText = String.Format(sqlUpdate, sqlValues);
+            if (!String.IsNullOrEmpty(textBoxName_student.Text))
+                command.Parameters.AddWithValue(
+                    "@fullName", textBoxName_student.Text);
+            if (!String.IsNullOrEmpty(textBoxEducation_student.Text))
+                command.Parameters.AddWithValue("@educat", SqlDbType.NVarChar).Value =
+                    textBoxEducation_student.Text;
+            if (!String.IsNullOrEmpty(textBoxRegistration_student.Text))
+                command.Parameters.AddWithValue(
+                    "@registr", textBoxRegistration_student.Text);
             if (!String.IsNullOrEmpty(fileImage))
                 command.Parameters.AddWithValue("@photo",
                File.ReadAllBytes(fileImage));
-
-
-            command.CommandText = String.Format(sqlUpdate, sqlValues);
-            command.Parameters.AddWithValue("@id_student", id);
-
+            command.Parameters.AddWithValue("@id", id);
             try
             {
                 command.ExecuteNonQuery();
@@ -387,22 +352,20 @@ namespace dataBaseForSchool
                     "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
             }
-
             int _id;
-
             if (!int.TryParse(textBoxId_student.Text, out _id))
             {
                 MessageBox.Show("Некоректное значение кода ученика!", "Внимание",
                MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             string sqlDelete = @"delete from Student where id_student=@id_student";
             SqlConnection connection = new SqlConnection(Properties.Settings.Default.schoollConnectionString);
             connection.Open();
             SqlCommand command = connection.CreateCommand();
             command.CommandText = sqlDelete;
             command.Parameters.AddWithValue("@id_student", _id);
+
             try
             {
                 command.ExecuteNonQuery();
@@ -442,6 +405,8 @@ namespace dataBaseForSchool
 
             }
         }
+
+
     }
 }
 
